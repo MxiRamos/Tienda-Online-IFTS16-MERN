@@ -1,0 +1,32 @@
+GET http://localhost:5000/api/productos HTTP/1.1
+
+###
+
+GET http://localhost:5000/api/productos/64643582c90961aedb5f042b HTTP/1.1
+
+###
+POST http://localhost:5000/api/productos HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Taladro",
+    "categoria": "Herramientas",
+    "precio": 10000,
+    "img": "https://gammaherramientasar.vteximg.com.br/arquivos/ids/155492-1000-1000/g1901ar-taladro-percutor-con-reversa-650w_00.jpg?v=637284477158700000"
+}
+
+###
+
+PUT http://localhost:5000/api/productos/64643582c90961aedb5f042b HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Remera polo",
+    "categoria": "Ropa",
+    "precio": 5000,
+    "img": "xddd"
+}
+
+###
+
+DELETE http://localhost:5000/api/productos/64643582c90961aedb5f042b HTTP/1.1

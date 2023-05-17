@@ -1,3 +1,13 @@
 16/05-- Creacion del front con React, back con NodeJS y MongoDB como base de datos
 back---
-Instalacion de las dependencias express, nodemon(para que la se actualize automaticamente cada vez que se produzca un cambio en la back), dotenv(una dependencia de variable de entorno para poder hacer la conexion con mongo de una manera segura) y mongoose(dependencia para la conexion con la base de datos)
+Instalacion de las dependencias express, nodemon(para que la se actualize automaticamente cada vez que se produzca un cambio en la back), 
+dotenv(una dependencia de variable de entorno para poder hacer la conexion con mongo de una manera segura) y 
+mongoose(dependencia para la conexion con la base de datos)
+front--
+Instalacion de bootstrap, instalacion de axios para llamar a las urls del backend, instalacion de react-router-dom para la conexion de paginas del front
+Creacion del componente Inicio con su css
+En el componente Inicio uso axios para llamar al get del backend y obtener los productos de la base de datos para mostrar al inicio
+github--
+Proyecto subido a github
+
+17/05
