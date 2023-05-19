@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Inicio from './components/Inicio';
+import Producto from './components/Producto';
 
 function App() {
   return (
@@ -24,7 +25,6 @@ function App() {
               </li>
               
               
-              
             </ul>
           </div>
         </div>
@@ -33,6 +33,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Inicio></Inicio>}></Route>
+          <Route path='/producto/:id' element={<Producto></Producto>}></Route>
         </Routes>
       </BrowserRouter>
 

@@ -11,3 +11,10 @@ github--
 Proyecto subido a github
 
 17/05
+--back
+creacion get en la base de datos por la categoria
+
+
+18/05
+--front
+uso axios en el front para mostrar un producto por el id

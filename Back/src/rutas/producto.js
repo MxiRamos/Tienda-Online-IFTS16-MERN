@@ -48,4 +48,21 @@ router.delete('/productos/:id', (req, res) => {
         .catch((error) => res.json(error))
 })
 
+//Obtener categoria
+router.get('/producto/:id', (req, res) => { 
+    const { id } = req.params
+
+    // obtenemos todas la categorias por el id que se obtiene 
+    productosSchema
+        .findById(id)
+        .then((data) => {
+            productosSchema.find({ categoria: data.categoria })
+                .then((data) => res.json(data))
+                .catch((error) => res.json(error))
+        })
+        .catch((error) => res.json(error))
+})
+
 module.exports = router
+
+
