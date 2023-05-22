@@ -1,8 +1,10 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Inicio from './components/Inicio';
 import Producto from './components/Producto';
+import Herramientas from './components/Herramientas';
+import Electrodomesticos from './components/Electrodomesticos';
 
 function App() {
   return (
@@ -21,7 +23,7 @@ function App() {
                 <a className="nav-link" href="/registrarUsuario">Registrarse</a>
               </li>
               <li className="nav-item">
-                <input></input>
+                <input placeholder='Buscar'></input>
               </li>
               
               
@@ -30,11 +32,16 @@ function App() {
         </div>
       </nav>
 
+      
+
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Inicio></Inicio>}></Route>
           <Route path='/producto/:id' element={<Producto></Producto>}></Route>
+          <Route path='/herramientas' element={<Herramientas></Herramientas>}></Route>
+          <Route path='/electrodomesticos' element={<Electrodomesticos></Electrodomesticos>}></Route>
         </Routes>
+        
       </BrowserRouter>
 
 

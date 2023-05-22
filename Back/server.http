@@ -34,3 +34,7 @@ DELETE http://localhost:5000/api/productos/64643582c90961aedb5f042b HTTP/1.1
 ###
 
 GET http://localhost:5000/api/producto/64644c25c4ee36d65369e1cd HTTP/1.1
+
+###
+
+GET http://localhost:5000/api/producto/Herramientas HTTP/1.1

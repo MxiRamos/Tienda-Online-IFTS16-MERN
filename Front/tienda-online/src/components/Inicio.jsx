@@ -20,23 +20,36 @@ function Inicio(){
     }, [])
 
     return(
-    <div className="row row-cols-1 row-cols-md-6 g-1" >
-        
-            {/* itero los productos que obtuve de la base de datos */}
-            {dataProductos.map((producto) => (
-                <div className="card" >
-                    <div className="card-body" >
-                        <img src={producto.img} className='card-img-top' alt='...'></img>
-                        <Link to={`producto/${producto._id}`}>
-                            <h5 class="card-title">{producto.nombre}</h5>
-                        </Link>  
-                        <p className="card-text">{producto.precio}</p>  
-                        <button className="btn btn-primary" >Agregar</button>
-                    </div>
-                </div>
-            ))}
+    <>
+      <h1>Categorias</h1>
+      <Link to={'/herramientas'}>
+        <button className="btn btn-primary  boton">Herramientas</button>
+      </Link>
+      <Link to={'/electrodomesticos'}>
+      <button className="btn btn-primary boton">Electrodomesticos</button>
+      </Link>
+    
+        <div className="row row-cols-1 row-cols-md-4 g-1" >
             
-    </div>
+                {/* itero los productos que obtuve de la base de datos */}
+                {dataProductos.map((producto) => (
+                    <div className="card" >
+                        <div className="card-body" >
+                            <img src={producto.img} className='card-img-top' alt='...'></img>
+                            
+                                <h5 class="card-title">{producto.nombre}</h5>
+                            
+                            <p className="card-text">{producto.precio}$</p>
+                            <Link to={`producto/${producto._id}`}>
+                            <button className='btn btn-success float-start'>Detalles</button>
+                            </Link>   
+                            <button className="btn btn-primary float-end" >Agregar</button>
+                        </div>
+                    </div>
+                ))}
+                
+        </div>
+    </>   
     )
 }
 

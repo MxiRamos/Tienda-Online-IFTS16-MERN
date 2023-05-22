@@ -28,7 +28,7 @@ function Producto(){
                 <div className="card-body" >
                     <img src={producto.img} className='card-img-top' alt='...'></img>
                     <h5 class="card-title">{producto.nombre}</h5>
-                    <p className="card-text">{producto.precio}</p>  
+                    <p className="card-text">{producto.precio}$</p>  
                     <button className="btn btn-primary" >Agregar</button>
                 </div>
             </div>

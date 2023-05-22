@@ -18,3 +18,7 @@ creacion get en la base de datos por la categoria
 18/05
 --front
 uso axios en el front para mostrar un producto por el id
+
+19/05
+--front
+creacion de componentes Herramientas y Electrodomesticos para poder mostrar por tipo de categoria

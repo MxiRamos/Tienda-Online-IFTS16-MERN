@@ -1,9 +1,11 @@
 .card{
     margin: auto;
     margin-top: 40px;
+    margin-left: 15px;
+    margin-right: 10px;
 }
 
 .card-body{
     margin: auto;
-    width: 18rem;
+    width: 15rem;
 }
