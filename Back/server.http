@@ -9,10 +9,10 @@ POST http://localhost:5000/api/productos HTTP/1.1
 Content-Type: application/json
 
 {
-    "nombre": "Destornillador",
-    "categoria": "Herramientas",
-    "precio": 6000,
-    "img": "https://gammaherramientasar.vteximg.com.br/arquivos/ids/155492-1000-1000/g1901ar-taladro-percutor-con-reversa-650w_00.jpg?v=637284477158700000"
+    "nombre": "Auto y Bloques",
+    "categoria": "Juegos y Juguetes",
+    "precio": 2500,
+    "img": "https://ardiaprod.vtexassets.com/arquivos/ids/238104-1200-auto?v=638074071551430000&width=1200&height=auto&aspect=true"
 }
 
 ###

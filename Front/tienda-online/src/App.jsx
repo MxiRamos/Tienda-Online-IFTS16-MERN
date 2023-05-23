@@ -5,6 +5,8 @@ import Inicio from './components/Inicio';
 import Producto from './components/Producto';
 import Herramientas from './components/Herramientas';
 import Electrodomesticos from './components/Electrodomesticos';
+import Productos from './components/Productos';
+import Juguetes from './components/Juguetes';
 
 function App() {
   return (
@@ -20,7 +22,7 @@ function App() {
                 <a className="nav-link active" aria-current="page" href="/">Inicio</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/registrarUsuario">Registrarse</a>
+                <a className="nav-link" href="/productos">Productos</a>
               </li>
               <li className="nav-item">
                 <input placeholder='Buscar'></input>
@@ -37,9 +39,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Inicio></Inicio>}></Route>
+          <Route path='/productos' element={<Productos></Productos>}></Route>
           <Route path='/producto/:id' element={<Producto></Producto>}></Route>
           <Route path='/herramientas' element={<Herramientas></Herramientas>}></Route>
           <Route path='/electrodomesticos' element={<Electrodomesticos></Electrodomesticos>}></Route>
+          <Route path='/juguetes' element={<Juguetes></Juguetes>}></Route>
         </Routes>
         
       </BrowserRouter>

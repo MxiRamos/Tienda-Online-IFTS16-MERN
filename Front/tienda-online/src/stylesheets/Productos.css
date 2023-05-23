@@ -5,10 +5,5 @@
 
 .card-body{
     margin: auto;
-    width: 18px;
-}
-
-.imgCat{
-    height: 300px;
-    width: 300px;
+    width: 18pxrem;
 }

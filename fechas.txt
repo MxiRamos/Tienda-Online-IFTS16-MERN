@@ -22,3 +22,9 @@ uso axios en el front para mostrar un producto por el id
 19/05
 --front
 creacion de componentes Herramientas y Electrodomesticos para poder mostrar por tipo de categoria
+
+22/05
+--front
+Creacion de componente Jugetes, Carrousel creado y categorias en el inicio
+--back
+Ingreso de productos nuevos

@@ -1,54 +1,62 @@
-import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min.js'
 import '../stylesheets/Inicio.css'
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function Inicio(){
 
-    const [dataProductos, setDataProductos] = useState([])
-
-    useEffect(() => {
-        axios.get('/api/productos')
-            .then(res => {
-                console.log(res.data)
-                setDataProductos(res.data) // los datos que obtenemos del get del backen lo asignamos al useState dataProductos
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }, [])
+    
 
     return(
     <>
-      <h1>Categorias</h1>
-      <Link to={'/herramientas'}>
-        <button className="btn btn-primary  boton">Herramientas</button>
-      </Link>
-      <Link to={'/electrodomesticos'}>
-      <button className="btn btn-primary boton">Electrodomesticos</button>
-      </Link>
-    
-        <div className="row row-cols-1 row-cols-md-4 g-1" >
-            
-                {/* itero los productos que obtuve de la base de datos */}
-                {dataProductos.map((producto) => (
-                    <div className="card" >
-                        <div className="card-body" >
-                            <img src={producto.img} className='card-img-top' alt='...'></img>
-                            
-                                <h5 class="card-title">{producto.nombre}</h5>
-                            
-                            <p className="card-text">{producto.precio}$</p>
-                            <Link to={`producto/${producto._id}`}>
-                            <button className='btn btn-success float-start'>Detalles</button>
-                            </Link>   
-                            <button className="btn btn-primary float-end" >Agregar</button>
-                        </div>
-                    </div>
-                ))}
-                
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).webp" class="d-block mx-auto" alt="..."></img>
+            </div>
+            <div class="carousel-item">
+                <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).webp" class="d-block mx-auto" alt="..."></img>
+            </div>
+            <div class="carousel-item">
+                <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(23).webp" class="d-block mx-auto" alt="..."></img>
+            </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+        <h1>Categorias Populares</h1>
+        <div className="row row-cols-1 row-cols-md-4 g-4" >
+            <div className="card" >
+                <h5 className="card-title">Herramientas</h5>
+                <Link to={'/herramientas'}>
+                    <img src='https://images.hola.com/imagenes/decoracion/20200717172227/herramientas-basicas-bricolaje-casa-mc/0-847-953/herramientas-basicas-4-a.jpg?tx=w_360' className='imgCat' alt='...'></img>
+                </Link> 
+            </div>
+            <div className="card" >
+                <h5 className="card-title">Electrodomesticos</h5>
+                <Link to={'/electrodomesticos'}>
+                    <img src='https://img.freepik.com/vector-gratis/composicion-realista-electrodomesticos_1284-65307.jpg' className='imgCat' alt='...'></img>
+                </Link> 
+            </div>
+            <div className="card" >
+                <h5 className="card-title">Electrodomesticos</h5>
+                <Link to={'/juguetes'}>
+                    <img src='https://www.fundacionlealtad.org/wp-content/uploads/2019/11/Foto-noticia-600x400-1.jpg' className='imgCat' alt='...'></img>
+                </Link> 
+            </div>
+        </div>
+
+    
+      <h2>Productos Populares</h2>  
+
+
     </>   
     )
 }
