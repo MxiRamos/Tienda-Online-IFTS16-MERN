@@ -7,6 +7,7 @@ import Herramientas from './components/Herramientas';
 import Electrodomesticos from './components/Electrodomesticos';
 import Productos from './components/Productos';
 import Juguetes from './components/Juguetes';
+import ComidaYBebidas from './components/ComidaYBebidas';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path='/herramientas' element={<Herramientas></Herramientas>}></Route>
           <Route path='/electrodomesticos' element={<Electrodomesticos></Electrodomesticos>}></Route>
           <Route path='/juguetes' element={<Juguetes></Juguetes>}></Route>
+          <Route path='/comidaYbebidas' element={<ComidaYBebidas></ComidaYBebidas>}></Route>
         </Routes>
         
       </BrowserRouter>

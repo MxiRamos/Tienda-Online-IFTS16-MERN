@@ -25,6 +25,9 @@ creacion de componentes Herramientas y Electrodomesticos para poder mostrar por 
 
 22/05
 --front
-Creacion de componente Jugetes, Carrousel creado y categorias en el inicio
+Creacion de componente Jugetes,Creacion de componente Productos donde estaran todos los productos de la base de datos, Carrousel creado y categorias en el inicio
 --back
 Ingreso de productos nuevos
+
+24/05
+-front creacion de css para el diseño de componentes inicio, herramientas.jsx, electrodomesticos.jsx, Juguetes.jsx, ComidaYBebida.jsx

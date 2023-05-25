@@ -1,5 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import '../stylesheets/Herramientas.css'
+import { Link } from "react-router-dom"
 
 function Herramientas(){
 
@@ -20,7 +22,7 @@ function Herramientas(){
                     console.log(productos.categoria)
                 }) */
                 /* console.log(res.data[0].categoria)
-                setHerramientas(res.data) */ // los datos que obtenemos del get del backen lo asignamos al useState dataProductos
+                setHerramientas(res.data) */ // los datos que obtenemos del get del backend lo asignamos al useState dataProductos
             })
             .catch(err => {
                 console.log(err)
@@ -28,7 +30,7 @@ function Herramientas(){
     }, [])
 
     return(
-        <div className="row row-cols-1 row-cols-md-4 g-4" >
+        <div className="row row-cols-1 row-cols-md-4 g-4 Herramientas" >
             {herramientas.map((herramienta) => (
                 <div className="card" >
                     <div className="card-body" >
@@ -36,6 +38,9 @@ function Herramientas(){
                         <h5 class="card-title">{herramienta.nombre}</h5>
                         <p className="card-text">{herramienta.precio}$</p>  
                         <button className="btn btn-primary" >Agregar</button>
+                        <Link to={`/producto/${herramienta._id}`}>
+                            <button className='btn btn-success float-start'>Detalles</button>
+                        </Link> 
                     </div>
                 </div>
             ))}

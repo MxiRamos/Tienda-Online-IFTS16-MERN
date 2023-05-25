@@ -23,7 +23,7 @@ function Producto(){
     }, [])
 
     return(
-        <div className="row row-cols-1 row-cols-md-4 g-4" >
+        <div className="row row-cols-1 row-cols-md-4 g-4 Producto" >
             <div className="card" >
                 <div className="card-body" >
                     <img src={producto.img} className='card-img-top' alt='...'></img>
