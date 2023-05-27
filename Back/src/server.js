@@ -3,10 +3,12 @@ const app = express() // asigno a app express
 const mongoose = require('mongoose') // llamo a mongoose para la conexion con la base de datos
 require('dotenv').config() // llama a la variable de entorno para la conexion a la base de datos
 const productosRoutes = require('./rutas/producto')
+const usuariosSchema = require('./rutas/usuarios')
 
 //Middlewares
 app.use(express.json()) // para que se pueda leer en formato json
 app.use('/api', productosRoutes)
+app.use('/api', usuariosSchema)
 
 //Rutas
 app.get('/',(req, res) => { //muestro un mensaje en el inicio 

@@ -31,3 +31,8 @@ Ingreso de productos nuevos
 
 24/05
 -front creacion de css para el diseño de componentes inicio, herramientas.jsx, electrodomesticos.jsx, Juguetes.jsx, ComidaYBebida.jsx
+
+25/05
+-back
+Creacion de usuarios en la base de datos con su GET, POST, DELETE y PUT
+instalacion de bcrypt para que la contraseña del usuario este encriptado en la base de datos

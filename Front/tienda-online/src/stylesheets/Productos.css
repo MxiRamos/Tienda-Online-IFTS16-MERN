@@ -1,9 +1,24 @@
-.card{
+.cardProductos{
     margin: auto;
     margin-top: 40px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .card-body{
     margin: auto;
-    width: 18pxrem;
+}
+
+.containerList{
+    float: left;
+    padding-top: 5px;
+    margin-right: 10px;
+}
+
+.containerProductos{
+    margin-bottom: 30px;
+}
+
+.form-check-input .form-check-label{
+    float: left;
 }

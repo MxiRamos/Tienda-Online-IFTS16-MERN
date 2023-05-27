@@ -8,6 +8,8 @@ import Electrodomesticos from './components/Electrodomesticos';
 import Productos from './components/Productos';
 import Juguetes from './components/Juguetes';
 import ComidaYBebidas from './components/ComidaYBebidas';
+import Login from './components/Login';
+import Registrar from './components/RegistrarUsuario';
 
 function App() {
   return (
@@ -24,6 +26,9 @@ function App() {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/productos">Productos</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/registrar">Registrar</a>
               </li>
               <li className="nav-item">
                 <input placeholder='Buscar'></input>
@@ -46,11 +51,46 @@ function App() {
           <Route path='/electrodomesticos' element={<Electrodomesticos></Electrodomesticos>}></Route>
           <Route path='/juguetes' element={<Juguetes></Juguetes>}></Route>
           <Route path='/comidaYbebidas' element={<ComidaYBebidas></ComidaYBebidas>}></Route>
+          <Route path='/login' element={<Login></Login>}></Route>
+          <Route path='/registrar' element={<Registrar></Registrar>}></Route>
         </Routes>
         
       </BrowserRouter>
 
+      <footer>
+            
+            <div className="container">
 
+                <div className="foo-row">
+                    <div className="foo-col">
+                        <h2>Suscríbete a nuestro newsletter</h2>
+                        <form action="" method="GET">
+
+                            <div className="f-input">
+                                <input type="text" placeholder="Ingrese su correo"></input>
+                                <button type="submit" class="hm-btn-round btn-primary"><i className="far fa-paper-plane"></i></button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div className="foo-col">
+                        <ul>
+                           <li><a href="http://">Productos</a></li>
+                           <li><a href="http://">Campañas</a></li>
+                           <li><a href="http://">Nosotros</a></li>
+                           <li><a href="http://">Contacto</a></li>
+                           <li><a href="http://">Enlace 01</a></li>
+                           <li><a href="http://">Enlace 02</a></li>
+                           <li><a href="http://">Enlace 03</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </footer>
 
     </div>
   );

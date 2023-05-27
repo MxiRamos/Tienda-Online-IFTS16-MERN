@@ -115,40 +115,7 @@ function Inicio(){
 
     
        
-        <footer>
-            
-            <div className="container">
-
-                <div className="foo-row">
-                    <div className="foo-col">
-                        <h2>Suscríbete a nuestro newsletter</h2>
-                        <form action="" method="GET">
-
-                            <div className="f-input">
-                                <input type="text" placeholder="Ingrese su correo"></input>
-                                <button type="submit" class="hm-btn-round btn-primary"><i className="far fa-paper-plane"></i></button>
-                            </div>
-                        </form>
-
-                    </div>
-
-                    <div className="foo-col">
-                        <ul>
-                           <li><a href="http://">Productos</a></li>
-                           <li><a href="http://">Campañas</a></li>
-                           <li><a href="http://">Nosotros</a></li>
-                           <li><a href="http://">Contacto</a></li>
-                           <li><a href="http://">Enlace 01</a></li>
-                           <li><a href="http://">Enlace 02</a></li>
-                           <li><a href="http://">Enlace 03</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </footer>
+        
 
     </>   
     )

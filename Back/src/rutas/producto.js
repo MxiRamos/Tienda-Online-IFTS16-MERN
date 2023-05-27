@@ -48,7 +48,7 @@ router.delete('/productos/:id', (req, res) => {
         .catch((error) => res.json(error))
 })
 
-//Obtener categoria
+/* //Obtener categoria
 router.get('/producto/:id', (req, res) => { 
     const { id } = req.params
 
@@ -61,7 +61,7 @@ router.get('/producto/:id', (req, res) => {
                 .catch((error) => res.json(error))
         })
         .catch((error) => res.json(error))
-})
+}) */
 
 
 module.exports = router

@@ -1,3 +1,4 @@
+//Creacion de coleccion productos para la base de datos
 const mongoose = require('mongoose')
 const productosSchema = mongoose.Schema({
     nombre:{
