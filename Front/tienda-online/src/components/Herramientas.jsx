@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 function Herramientas(){
 
     const [herramientas, setHerramientas] = useState([])
-    
+    const [input, setInput] = useState('') //cantidad de productos
 
     useEffect(() => {
         axios.get('/api/productos')
@@ -28,6 +28,36 @@ function Herramientas(){
                 console.log(err)
             })
     }, [])
+
+    //funcion que agrega un producto al carrito
+    function agregarProducto(id){
+        axios.get(`/api/productos/${id}`) //obtengo el producto por el id
+            .then(res => {
+                console.log(res.data)
+                var producto = { // defino la variable producto y ingreso los datos del producto
+                    nombre: res.data.nombre,
+                    categoria: res.data.categoria,
+                    precio: res.data.precio,
+                    img: res.data.img,
+                    cantidad: input
+                }
+                axios.post('/api/carrito', producto) // hago un post con producto donde esta almacenado el producto que quiero agregar
+                    .then(res => {
+                        console.log(res.data)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+    const handleOnChange = e =>{
+        const valor = e.target.value
+        setInput(valor)
+    }
 
     return(
         <div className="container">
@@ -66,11 +96,18 @@ function Herramientas(){
                         <div className="card-body" >
                             <img src={herramienta.img} className='card-img-top' alt='...'></img>
                             <h5 class="card-title">{herramienta.nombre}</h5>
-                            <p className="card-text">{herramienta.precio}$</p>  
-                            <button className="btn btn-primary" >Agregar</button>
+                            <p className="card-text">{herramienta.precio}$</p>
                             <Link to={`/producto/${herramienta._id}`}>
-                                <button className='btn btn-success float-start'>Detalles</button>
+                                <button className='btn btn-success '>Detalles</button>
                             </Link> 
+                            <div className="botonesProductos">
+                                <input id={herramienta._id} type="number" className="inputCantidad float-start" value={input} min={1} max={20}
+                                    onChange={handleOnChange}></input>
+                                    
+                                    <Link to={'/carrito'}>
+                                    <button className="btn btn-primary float-end" onClick={() => agregarProducto(herramienta._id)}>Agregar</button>
+                                    </Link>
+                            </div>
                         </div>
                     </div>
                 ))}

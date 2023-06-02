@@ -3,6 +3,7 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import '../stylesheets/Inicio.css'
 import { Link } from 'react-router-dom'
 
+
 function Inicio(){
 
     

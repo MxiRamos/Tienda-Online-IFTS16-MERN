@@ -68,4 +68,20 @@ router.delete('/usuarios/:id', (req, res) => {
         .catch((error) => res.json(error))
 })
 
+//Autenticar usuario
+router.post('/login', (req, res) => {
+    const { email, password } = req.body
+
+    usuariosSchema
+        .findOne({email: email})
+        .then(usuarioEncontrado => {
+            if(usuarioEncontrado){
+                res.send('Usuario Ingresado')
+            }else if(!usuarioEncontrado){
+                res.send('Usuario no encontrado')
+            }
+        })
+        .catch((err) => res.send(err))
+})
+
 module.exports = router

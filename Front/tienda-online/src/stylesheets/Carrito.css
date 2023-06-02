@@ -1,0 +1,20 @@
+.cardCarrito{
+    background-color: rgb(246, 251, 255);
+    margin-top: 40px;
+    margin-bottom: 100%;
+    margin-left: 400px;
+    margin-right: 400px;
+}
+
+.containerTabla{
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-bottom: 10px;
+}
+
+.card-img-top-carrito{
+    width: 100px;
+    height: 100px;
+}
+

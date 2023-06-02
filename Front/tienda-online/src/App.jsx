@@ -10,6 +10,8 @@ import Juguetes from './components/Juguetes';
 import ComidaYBebidas from './components/ComidaYBebidas';
 import Login from './components/Login';
 import Registrar from './components/RegistrarUsuario';
+import Carrito from './components/Carrito';
+import { FaShoppingCart } from 'react-icons/fa'
 
 function App() {
   return (
@@ -22,13 +24,16 @@ function App() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">Inicio</a>
+                <a className="nav-link" aria-current="page" href="/">Inicio</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/productos">Productos</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/registrar">Registrar</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/carrito"><FaShoppingCart></FaShoppingCart></a>
               </li>
               <li className="nav-item">
                 <input placeholder='Buscar'></input>
@@ -53,6 +58,7 @@ function App() {
           <Route path='/comidaYbebidas' element={<ComidaYBebidas></ComidaYBebidas>}></Route>
           <Route path='/login' element={<Login></Login>}></Route>
           <Route path='/registrar' element={<Registrar></Registrar>}></Route>
+          <Route path='/carrito' element={<Carrito></Carrito>}></Route>
         </Routes>
         
       </BrowserRouter>

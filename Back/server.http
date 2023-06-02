@@ -51,7 +51,53 @@ POST http://localhost:5000/api/usuarios HTTP/1.1
 Content-Type: application/json
 
 {
-    "usuario": "garrus234",
+    "usuario": "garrus244",
+    "email": "garrus23z@email.com",
+    "password": "contraseña1234"
+}
+
+###
+
+POST http://localhost:5000/api/login HTTP/1.1
+Content-Type: application/json
+
+{
     "email": "garrus2@email.com",
     "password": "contraseña123"
 }
+
+
+###--------------------------
+
+GET http://localhost:5000/api/carrito HTTP/1.1
+
+###
+
+GET http://localhost:5000/api/carrito/6475499ebec5b7d5d10a4d04 HTTP/1.1
+
+###
+POST http://localhost:5000/api/carrito HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Gaseosa Coca-Cola",
+    "categoria": "Electro Hogar",
+    "precio": 650,
+    "img": "https://ardiaprod.vtexassets.com/arquivos/ids/245127-1200-auto?v=638121502666400000&width=1200&height=auto&aspect=true"
+}
+
+###
+
+PUT http://localhost:5000/api/carrito/6475499ebec5b7d5d10a4d04 HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Gaseosa Coca-Cola",
+    "categoria": "Comida y Bebidas",
+    "precio": 650,
+    "img": "https://ardiaprod.vtexassets.com/arquivos/ids/245127-1200-auto?v=638121502666400000&width=1200&height=auto&aspect=true"
+}
+
+###
+
+DELETE http://localhost:5000/api/carrito/6475499ebec5b7d5d10a4d04 HTTP/1.1

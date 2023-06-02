@@ -22,3 +22,12 @@
 .form-check-input .form-check-label{
     float: left;
 }
+
+.inputCantidad{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.botonesProductos{
+    margin-top: 10px;
+}

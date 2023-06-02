@@ -36,3 +36,18 @@ Ingreso de productos nuevos
 -back
 Creacion de usuarios en la base de datos con su GET, POST, DELETE y PUT
 instalacion de bcrypt para que la contraseña del usuario este encriptado en la base de datos
+
+26/05
+-front 
+Creacion de componente RegistrarUsuario para la creacion de usuarios con la funcion axios se llama al backend para registrar en la base de datos
+
+30/05
+-back
+Creacion de coleccion Carritos en la base de datos para almacenar los productos con sus metodos GET,POST, DELETE y PUT
+-front
+Creacion de componente Carrito donde se mostrara los productos agregados
+Instalacion de react-icons para poder usar iconos
+
+31/05
+--front
+Creacion de funcion agregarProducto y eliminarProducto del carrito
