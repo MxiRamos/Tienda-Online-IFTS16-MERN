@@ -6,8 +6,8 @@ import '../stylesheets/Productos.css'
 function Productos(){
 
     const [dataProductos, setDataProductos] = useState([])
-    const [input, setInput] = useState('') //cantidad de productos
-
+    const [carritoIndividual, setCarritoIndividual] = useState([])
+    const [input, setInput] = useState() //cantidad de productos
     
     useEffect(() => {
         axios.get('/api/productos')
@@ -17,41 +17,78 @@ function Productos(){
             })
             .catch(err => {
                 console.log(err)
-            })  
+            })
     }, [])
+      
 
+    //--------------
     //funcion que agrega un producto al carrito
     function agregarProducto(id){
-        axios.get(`/api/productos/${id}`) //obtengo el producto por el id
-            .then(res => {
-                console.log(res.data)
-                var producto = { // defino la variable producto y ingreso los datos del producto
-                    nombre: res.data.nombre,
-                    categoria: res.data.categoria,
-                    precio: res.data.precio,
-                    img: res.data.img,
-                    cantidad: input
-                }
-                axios.post('/api/carrito', producto) // hago un post con producto donde esta almacenado el producto que quiero agregar
-                    .then(res => {
-                        console.log(res.data)
+
+        axios.get(`/api/carrito/${id}`) //obtengo el valor del carrito por el id y lo asigno al useState carritoIndividual
+                    .then(resCarrito => {
+                        setCarritoIndividual(resCarrito.data)
                     })
                     .catch(err => {
                         console.log(err)
                     })
+        
+
+        axios.get(`/api/productos/${id}`) //obtengo el producto por el id
+            .then(res => {
+
+                if(carritoIndividual.nombre === res.data.nombre){ //si tiene el mismo nombre solo suma la cantidad que se definio en el input
+                    var cantidadActual = carritoIndividual.cantidad
+                    cantidadActual += parseInt(input || 1) //con parserInt paso el valor input a un numero
+                    carritoIndividual.cantidad = cantidadActual // al valor que obtuve del carrito le sumo la cantidad sumada con el input
+                    console.log(carritoIndividual.cantidad)
+                    
+                    const carritoCantidad = { // defino carritoCantidad con el valor de cantidad modificado
+                        _id: carritoIndividual._id,
+                        nombre: carritoIndividual.nombre,
+                        categoria: carritoIndividual.categoria,
+                        precio: carritoIndividual.precio,
+                        img: carritoIndividual.img,
+                        cantidad: carritoIndividual.cantidad 
+                    }
+                    console.log(carritoCantidad)
+
+                    axios.put(`/api/carrito/${id}`, carritoCantidad)//hago el put con la cantidad modificada
+                        .then(responseCarrito => {
+                            console.log(responseCarrito.data)
+                        })
+                        .catch(err => console.log(err))
+
+                        setCarritoIndividual([])
+
+                }else{ // si el nombre no es el mismo hace un post 
+                    var producto = { // defino la variable producto y ingreso los datos del producto
+                        _id: res.data._id,
+                        nombre: res.data.nombre,
+                        categoria: res.data.categoria,
+                        precio: res.data.precio,
+                        img: res.data.img,
+                        cantidad: 1 || input
+                    }
+                    axios.post('/api/carrito', producto) // hago un post con producto donde esta almacenado el producto que quiero agregar
+                        .then(res => {
+                            console.log(res.data)
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
+                }
             })
             .catch(err => {
                 console.log(err)
             })
     }
+    //----------------
 
+    
+    
 
-
-    const handleOnChange = e =>{
-        const valor = e.target.value
-        setInput(valor)
-    }
-
+    
     return(
         <div className="container containerProductos">
             <div className="containerList">
@@ -95,13 +132,13 @@ function Productos(){
                                 <h5 class="card-title">{producto.nombre}</h5>
                                 <p className="card-text">{producto.precio}$</p>
                                 <Link to={`/producto/${producto._id}`}>
-                                    <button className='btn btn-success float-start'>Detalles</button>
+                                    <button className='btn btn-success '>Detalles</button>
                                 </Link>
                                 <div className="botonesProductos">
-                                <input id={producto._id} type="number" className="inputCantidad float-start" value={input} min={1} max={20}
-                                    onChange={handleOnChange}></input>
+                                    <input id={producto._id} type="number" className="inputCantidad float-start" value={input || 1} min={1} max={20}
+                                    onChange={e => setInput(e.target.value)}></input>
                                     
-                                    <Link to={'/carrito'}>
+                                    <Link >
                                     <button className="btn btn-primary float-end" onClick={() => agregarProducto(producto._id)}>Agregar</button>
                                     </Link>
                                 </div>
@@ -109,6 +146,7 @@ function Productos(){
                             </div>
                         </div>
                     ))}
+                    
                     
             </div>
     </div> 

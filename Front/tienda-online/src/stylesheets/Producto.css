@@ -5,6 +5,15 @@
     margin-right: 10px;
 }
 
+#cardProducto{
+    margin: auto;
+    margin-top: 40px;
+}
+
+#card-bodyProducto{
+    margin: auto;
+}
+
 .card-body{
     margin: auto;
     width: 15rem;

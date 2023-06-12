@@ -12,6 +12,9 @@ import Login from './components/Login';
 import Registrar from './components/RegistrarUsuario';
 import Carrito from './components/Carrito';
 import { FaShoppingCart } from 'react-icons/fa'
+import { FaTelegramPlane } from "react-icons/fa";
+import Contacto from './components/Contacto';
+import Nosotros from './components/Nosotros';
 
 function App() {
   return (
@@ -30,15 +33,18 @@ function App() {
                 <a className="nav-link" href="/productos">Productos</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/registrar">Registrar</a>
+                <a className="nav-link" href="/login">Login</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/carrito"><FaShoppingCart></FaShoppingCart></a>
+                <a className="nav-link" href="/registrar">Registrar</a>
               </li>
               <li className="nav-item">
                 <input placeholder='Buscar'></input>
               </li>
               
+              <li className="nav-item">
+                <a className="nav-link" href="/carrito"><FaShoppingCart></FaShoppingCart></a>
+              </li>
               
             </ul>
           </div>
@@ -59,6 +65,8 @@ function App() {
           <Route path='/login' element={<Login></Login>}></Route>
           <Route path='/registrar' element={<Registrar></Registrar>}></Route>
           <Route path='/carrito' element={<Carrito></Carrito>}></Route>
+          <Route path='/contacto' element={<Contacto></Contacto>}></Route>
+          <Route path='/nosotros' element={<Nosotros></Nosotros>}></Route>
         </Routes>
         
       </BrowserRouter>
@@ -74,7 +82,7 @@ function App() {
 
                             <div className="f-input">
                                 <input type="text" placeholder="Ingrese su correo"></input>
-                                <button type="submit" class="hm-btn-round btn-primary"><i className="far fa-paper-plane"></i></button>
+                                <button type="submit" class="hm-btn-round btn-primary"><FaTelegramPlane></FaTelegramPlane></button>
                             </div>
                         </form>
 
@@ -82,13 +90,9 @@ function App() {
 
                     <div className="foo-col">
                         <ul>
-                           <li><a href="http://">Productos</a></li>
-                           <li><a href="http://">Campañas</a></li>
-                           <li><a href="http://">Nosotros</a></li>
-                           <li><a href="http://">Contacto</a></li>
-                           <li><a href="http://">Enlace 01</a></li>
-                           <li><a href="http://">Enlace 02</a></li>
-                           <li><a href="http://">Enlace 03</a></li>
+                           <li><a href="/productos">Productos</a></li>
+                           <li><a href="/nosotros">Nosotros</a></li>
+                           <li><a href="/contacto">Contacto</a></li>
                         </ul>
                     </div>
 

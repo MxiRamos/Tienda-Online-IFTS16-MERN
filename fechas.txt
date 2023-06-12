@@ -51,3 +51,7 @@ Instalacion de react-icons para poder usar iconos
 31/05
 --front
 Creacion de funcion agregarProducto y eliminarProducto del carrito
+
+02/06
+--front
+Creacion de funcion agregarProducto y eliminarProducto del carrito en las categorias

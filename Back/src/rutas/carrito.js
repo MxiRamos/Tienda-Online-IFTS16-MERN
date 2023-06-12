@@ -1,5 +1,6 @@
 const express = require('express')
 const carritoSchema = require('../modelos/carrito')
+const carrito = require('../modelos/carrito')
 const router = express.Router()
 
 // obtengo la lista del carrito
@@ -32,9 +33,9 @@ router.post('/carrito', (req, res) => {
 //Actualizo un producto del carrito
 router.put('/carrito/:id', (req, res) => {
     const { id } = req.params //obtengo el id solicitado
-    const { nombre, categoria, precio, img } = req.body // obtengo el valor que se va a actualizar
+    const { _id ,nombre, categoria, precio, img, cantidad } = req.body // obtengo el valor que se va a actualizar
     carritoSchema
-        .updateOne({ _id:id }, {$set: {nombre, categoria, precio, img}}) //actualizo los valores
+        .updateOne({ _id:id }, {$set: { _id, nombre, categoria, precio, img, cantidad}}) //actualizo los valores
         .then((data) => res.json(data))
         .catch((error) => res.json(error))
 })
