@@ -44,16 +44,17 @@ function ComidaYBebidas(){
             })
     }
 
-    const handleOnChange = e =>{
-        const valor = e.target.value
-        setInput(valor)
-    }
-
     return(
         <div className="container">
             <div className="containerList">
             <h1>Categorias</h1>
                 <ul className="list-group">
+                    <li className="list-group-item">
+                        <Link to={'/productos'}> 
+                            <input className="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio"></input>
+                            <label className="form-check-label" for="firstRadio">Productos</label>
+                        </Link>
+                    </li>
                     <li className="list-group-item">
                         <Link to={'/herramientas'}> 
                             <input className="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio"></input>
@@ -91,9 +92,9 @@ function ComidaYBebidas(){
                                 <button className='btn btn-success '>Detalles</button>
                             </Link>
                             <div className="botonesProductos">
-                                <input id={comidaYbebida._id} type="number" className="inputCantidad float-start" value={input} min={1} max={20}
-                                    onChange={handleOnChange}></input>
-                                    
+                                <input id={comidaYbebida._id} type="number" className="inputCantidad float-start" value={input || 1} min={1} max={20}
+                                    onChange={e => setInput(e.target.value)}></input>
+                                                                        
                                     <Link to={'/carrito'}>
                                     <button className="btn btn-primary float-end" onClick={() => agregarProducto(comidaYbebida._id)}>Agregar</button>
                                     </Link>

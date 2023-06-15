@@ -40,3 +40,32 @@
 .boton{
   margin-right: 10px;
 }
+
+/*----------------*/
+.search-container {
+  margin-left: 350px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+}
+
+.dropdown:empty{
+  border: none;
+}
+
+.dropdown-row{
+  cursor: pointer;
+  text-align: start;
+  margin: 2px 0;
+}
+
+.search-inner{
+  display: flex;
+}

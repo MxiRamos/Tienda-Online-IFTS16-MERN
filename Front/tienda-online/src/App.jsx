@@ -15,8 +15,37 @@ import { FaShoppingCart } from 'react-icons/fa'
 import { FaTelegramPlane } from "react-icons/fa";
 import Contacto from './components/Contacto';
 import Nosotros from './components/Nosotros';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 function App() {
+
+  const [productos, setProductos] = useState([])
+  const [busqueda, setBusqueda] = useState('')
+
+  
+
+  useEffect(()=> {
+    axios.get('/api/productos')
+      .then(res => {
+        setProductos(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },[])
+
+
+  const handleChange = e => { //obtengo el valor de lo que se escribe en el input
+    setBusqueda(e.target.value)
+    console.log(busqueda)
+  }
+
+  const onSearch = (buscador) =>{// hace un set al useState busqueda
+    setBusqueda(buscador)
+    console.log('Buscar ', buscador)
+  }
+
   return (
     <div className="App">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -32,25 +61,46 @@ function App() {
               <li className="nav-item">
                 <a className="nav-link" href="/productos">Productos</a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/login">Login</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/registrar">Registrar</a>
-              </li>
-              <li className="nav-item">
-                <input placeholder='Buscar'></input>
-              </li>
+
+              <div className='search-container'>
+                <div className='search-inner'>
+                  <input type='text' placeholder='Buscar' value={busqueda} onChange={handleChange}></input>
+                  <button onClick={() => onSearch(busqueda)}>Buscar</button>
+                </div>
+                <div className='dropdown'>
+                  {productos.filter(producto => { // filtra la lista de productos que se obtuvo con el axios.get
+                    const busquedaProducto = busqueda.toLowerCase() // valor del input busqueda se pasa a minuscula para no ocasionar problema al comparar
+                    const productoNombre = producto.nombre.toLowerCase() // nombre de los productos se pasa a minuscula
+
+                    return busquedaProducto && productoNombre.startsWith(busquedaProducto) && productoNombre !== busquedaProducto
+                  })
+                  .map(producto => ( //itera todo los productos
+                    <a href={`producto/${producto._id}`}>
+                      <div
+                      onClick={() => onSearch(producto.nombre)} // onSearch da el nombre del producto y lo setea a useState busqueda
+                      className='dropdown-row'
+                      >
+                        {producto.nombre}
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
               
-              <li className="nav-item">
-                <a className="nav-link" href="/carrito"><FaShoppingCart></FaShoppingCart></a>
-              </li>
               
             </ul>
+            <li className="nav">
+                <a className="nav-link" href="/login">Login</a>
+            </li>
+            <li className="nav">
+                <a className="nav-link" href="/registrar">Registrar</a>
+            </li>
+            <li className="nav-item">
+                <a className="nav-icon" href="/carrito"><FaShoppingCart></FaShoppingCart></a>
+            </li>
           </div>
         </div>
       </nav>
-
       
 
       <BrowserRouter>

@@ -95,6 +95,12 @@ function Productos(){
                 <h1>Categorias</h1>
                 <ul className="list-group">
                     <li className="list-group-item">
+                        <Link to={'/productos'}> 
+                            <input className="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio" checked></input>
+                            <label className="form-check-label" for="firstRadio">Productos</label>
+                        </Link>
+                    </li>
+                    <li className="list-group-item">
                         <Link to={'/herramientas'}> 
                             <input className="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio"></input>
                             <label className="form-check-label" for="firstRadio">Herramientas</label>

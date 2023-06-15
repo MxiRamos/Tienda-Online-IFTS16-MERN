@@ -55,3 +55,14 @@ Creacion de funcion agregarProducto y eliminarProducto del carrito
 02/06
 --front
 Creacion de funcion agregarProducto y eliminarProducto del carrito en las categorias
+
+12/06
+-front
+Creacion de componente contacto y nosotros
+
+13/06
+Creacion de buscador en el navbar
+
+15/06
+-front
+Buscador de navbar te envia al producto seleccionado al escribir una letra que inicie con el nombre
