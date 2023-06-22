@@ -66,3 +66,12 @@ Creacion de buscador en el navbar
 15/06
 -front
 Buscador de navbar te envia al producto seleccionado al escribir una letra que inicie con el nombre
+
+16/06
+-front
+Arreglos al agregar un producto y al eliminar un producto al carrito(refresco de paginas al ejecutar la funcion)
+
+22/06
+-front
+Arreglos en la funcion agregarProducto de productos.jsx(antes se necesitaba hacer doble click para que la cantidad se modifique en el carrito) 
+Se agregaron 2 iconos para modificar el producto del carrito, tambien se crearon las funciones para sumar y restar la cantidad del producto en el carrito.jsx

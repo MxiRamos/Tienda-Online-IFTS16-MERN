@@ -75,7 +75,7 @@ function App() {
                     return busquedaProducto && productoNombre.startsWith(busquedaProducto) && productoNombre !== busquedaProducto
                   })
                   .map(producto => ( //itera todo los productos
-                    <a href={`producto/${producto._id}`}>
+                    <a href={`/producto/${producto._id}`}>
                       <div
                       onClick={() => onSearch(producto.nombre)} // onSearch da el nombre del producto y lo setea a useState busqueda
                       className='dropdown-row'
