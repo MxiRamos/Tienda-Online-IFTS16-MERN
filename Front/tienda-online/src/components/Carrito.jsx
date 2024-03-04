@@ -31,7 +31,7 @@ function Carrito(){
         window.location.reload(true)
     }
 
-    //
+    //---------------------
 
     function restarProducto(id){
         axios.get(`/api/carrito/${id}`)
@@ -39,6 +39,46 @@ function Carrito(){
                 console.log(res.data)
                 const cantidadActual = res.data.cantidad
                 const cantidadResta = cantidadActual - 1
+
+                if(cantidadActual <= 1){
+                    axios.delete(`/api/carrito/${id}`)
+                        .then(respuesta =>{
+                            console.log(respuesta.data)
+                            window.location.reload(true)
+                        })
+                        .catch(err =>{
+                            console.log(err)
+                        })
+                }else{
+                    const cantidadRestaObj = {
+                        cantidad: cantidadResta
+                    }
+                    
+                    axios.put(`/api/carrito/${id}`, cantidadRestaObj)
+                        .then(response => {
+                            console.log(response)
+                            window.location.reload(true)
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
+                }
+
+                
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+    //-----------------------
+
+    function sumarProducto(id){
+        axios.get(`/api/carrito/${id}`)
+            .then(res => {
+                console.log(res.data)
+                const cantidadActual = res.data.cantidad
+                const cantidadResta = cantidadActual + 1
 
                 const cantidadRestaObj = {
                     cantidad: cantidadResta
@@ -57,8 +97,6 @@ function Carrito(){
                 console.log(err)
             })
     }
-
-    
 
     return(
         
@@ -86,7 +124,11 @@ function Carrito(){
                                         <th>{carrito.nombre}</th>
                                         <th>{carrito.categoria}</th>
                                         <th>{carrito.precio}$</th>
-                                        <th><FaMinus onClick={() => restarProducto(carrito._id)}></FaMinus> <input className='inputCarrito' type='number' value={carrito.cantidad} min={1} max={20}></input> <FaPlus onClick={() => carrito.cantidad + 1}></FaPlus></th>
+                                        <th>
+                                            <button className='btn btn-danger botonesCarrito'><FaMinus onClick={() => restarProducto(carrito._id)} className='restaProd'></FaMinus></button>
+                                            <input className='inputCarrito' type='number' value={carrito.cantidad} min={1} max={20}></input> 
+                                            <button className='btn btn-success botonesCarrito'><FaPlus onClick={() => sumarProducto(carrito._id)} className='sumaProd'></FaPlus></button>
+                                        </th>
                                         <th>
                                             <FaTrash onClick={() => eliminarProducto(carrito._id)}></FaTrash>
                                         </th>

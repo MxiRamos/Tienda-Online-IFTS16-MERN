@@ -6,7 +6,6 @@ import '../stylesheets/Productos.css'
 function Productos(){
 
     const [dataProductos, setDataProductos] = useState([])
-    //const [carritoIndividual, setCarritoIndividual] = useState([])
     const [input, setInput] = useState() //cantidad de productos
     
     useEffect(() => {
@@ -14,7 +13,13 @@ function Productos(){
             .then(res => {
                 console.log(res.data)
                 setDataProductos(res.data) // los datos que obtenemos del get del backen lo asignamos al useState dataProductos
-            })
+              
+                const valorInput = {}
+                res.data.forEach(producto => {
+                  valorInput[producto._id] = 1
+                })
+                setInput(valorInput)
+              })
             .catch(err => {
                 console.log(err)
             })
@@ -25,6 +30,7 @@ function Productos(){
     //--------------
     //funcion que agrega un producto al carrito
     function agregarProducto(id) {
+      const inputValor = input[id]
         axios.get(`/api/carrito/${id}`)//obtengo el valor del carrito por el id y lo asigno al const carritoIndividual
           .then(resCarrito => {
             const carritoIndividual = resCarrito.data;
@@ -34,7 +40,7 @@ function Productos(){
                 .then(res => {
                   if (carritoIndividual.nombre === res.data.nombre) { //si tiene el mismo nombre solo suma la cantidad que se definio en el input
                     var cantidadActual = carritoIndividual.cantidad;
-                    cantidadActual += parseInt(input || 1);//con parserInt paso el valor input a un numero
+                    cantidadActual += parseInt(inputValor || 1);//con parserInt paso el valor input a un numero
                     carritoIndividual.cantidad = cantidadActual;// al valor que obtuve del carrito le sumo la cantidad sumada con el input
                     console.log(carritoIndividual.cantidad);
       
@@ -65,7 +71,7 @@ function Productos(){
                     categoria: res.data.categoria,
                     precio: res.data.precio,
                     img: res.data.img,
-                    cantidad: input || 1
+                    cantidad: inputValor || 1
                   };
                   axios.post('/api/carrito', producto)// hago un post con producto donde esta almacenado el producto que quiero agregar
                     .then(res => {
@@ -84,9 +90,15 @@ function Productos(){
           .catch(err => {
             console.log(err);
           });
-      }
+    }
     
-
+    function handleInputChange(e, id) {
+      const { value } = e.target;
+      setInput(prevState => ({
+        ...prevState,
+        [id]: value
+      }));
+    }
     
     return(
         <div className="container containerProductos">
@@ -140,8 +152,8 @@ function Productos(){
                                     <button className='btn btn-success '>Detalles</button>
                                 </Link>
                                 <div className="botonesProductos">
-                                    <input id={producto._id} type="number" className="inputCantidad float-start" value={input || 1} min={1} max={20}
-                                    onChange={e => setInput(e.target.value)}></input>
+                                    <input id={producto._id} type="number" className="inputCantidad float-start" value={input[producto._id] || 1} min={1} max={20}
+                                    onChange={(e) => handleInputChange(e, producto._id)}></input>
                                     
                                     <Link to={'/carrito'}>
                                     <button className="btn btn-primary float-end" onClick={() => agregarProducto(producto._id)}>Agregar</button>

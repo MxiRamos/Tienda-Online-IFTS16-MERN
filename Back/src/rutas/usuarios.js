@@ -28,7 +28,7 @@ router.post('/usuarios', (req, res) => {
     usuariosSchema.findOne({ email: email}) // busca si el email es igual al de la base de datos
         .then( usuarioExistente => {
             if(usuarioExistente){ // si el usuario esta en la base de datos no se puede guardar en la base datos
-                res.send('Usuario existente, no se puede registrar el mismo usuario')
+                return res.json('Usuario existente, no se puede registrar el mismo usuario')
             }else if(!usuarioExistente){ // si no, es nuevo
                 bcrypt.hash(password,10) // encripto la contraseña que se va almacenar en la base de datos
                 .then((hash) => {
@@ -39,11 +39,9 @@ router.post('/usuarios', (req, res) => {
                     })
                     nuevoUsuario // guardo el usuario en la base de datos 
                     .save()
-                    .then((data) => res.json(data))
+                    .then((data) => res.json({ mensaje: data}))
                     .catch((error) => res.json({ message: error }))
                 })
-
-                
             }
         })
         .catch((err) => res.json({ message: err }))
@@ -70,18 +68,36 @@ router.delete('/usuarios/:id', (req, res) => {
 
 //Autenticar usuario
 router.post('/login', (req, res) => {
+    const usuario = productosSchema(req.body)
+    usuario
+        .save()
+        .then((data) => res.json(data))
+        .catch((error) => res.json(error))
+    }) 
+/* router.post('/login', (req, res) => {
     const { email, password } = req.body
 
     usuariosSchema
         .findOne({email: email})
         .then(usuarioEncontrado => {
-            if(usuarioEncontrado){
-                res.send('Usuario Ingresado')
-            }else if(!usuarioEncontrado){
-                res.send('Usuario no encontrado')
+            if(!usuarioEncontrado){// si no hay usuario muestra este mensaje
+                return res.json({ mensaje: "Usuario no encontrado" })
             }
+
+            bcrypt.compare(password, usuarioEncontrado.password) //compara la passwords hasheadas con la del usuario que encontro por el email
+                .then((esCorrecta) => {
+                    if(esCorrecta){ // si es correcta Ejecuta el mensaje
+                        const {id, usuario} = usuarioEncontrado // obtengo el id y el usuario del usuario con el email que se encontro
+
+                        return res.json({
+                            usuario
+                        })
+                    } else{ // si no dice que es incorrecta
+                        return res.json({ mensaje: "Contraseña incorrecta" })
+                    }
+                })
         })
         .catch((err) => res.send(err))
-})
+}) */
 
 module.exports = router

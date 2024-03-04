@@ -13,6 +13,11 @@ function Juguetes(){
             .then(res => {
                 console.log(res.data.filter(juguetes => juguetes.categoria === "Juegos y Juguetes")) 
                 setJuguetes(res.data.filter(juguetes => juguetes.categoria === "Juegos y Juguetes"))
+            
+                const valorInput = {}
+                res.data.forEach(producto => {
+                  valorInput[producto._id] = 1
+                })
             })
             .catch(err => {
                 console.log(err)
@@ -20,29 +25,76 @@ function Juguetes(){
     }, [])
 
     //funcion que agrega un producto al carrito
-    function agregarProducto(id){
-        axios.get(`/api/productos/${id}`) //obtengo el producto por el id
-            .then(res => {
-                console.log(res.data)
-                var producto = { // defino la variable producto y ingreso los datos del producto
-                    nombre: res.data.nombre,
-                    categoria: res.data.categoria,
-                    precio: res.data.precio,
-                    img: res.data.img,
-                    cantidad: input
-                }
-                axios.post('/api/carrito', producto) // hago un post con producto donde esta almacenado el producto que quiero agregar
-                    .then(res => {
-                        console.log(res.data)
-                    })
-                    .catch(err => {
-                        console.log(err)
-                    })
+    function agregarProducto(id) {
+        const inputValor = input[id]
+          axios.get(`/api/carrito/${id}`)//obtengo el valor del carrito por el id y lo asigno al const carritoIndividual
+            .then(resCarrito => {
+              const carritoIndividual = resCarrito.data;
+        
+              if (carritoIndividual && carritoIndividual.nombre) {
+                axios.get(`/api/productos/${id}`)//obtengo el producto por el id
+                  .then(res => {
+                    if (carritoIndividual.nombre === res.data.nombre) { //si tiene el mismo nombre solo suma la cantidad que se definio en el input
+                      var cantidadActual = carritoIndividual.cantidad;
+                      cantidadActual += parseInt(inputValor || 1);//con parserInt paso el valor input a un numero
+                      carritoIndividual.cantidad = cantidadActual;// al valor que obtuve del carrito le sumo la cantidad sumada con el input
+                      console.log(carritoIndividual.cantidad);
+        
+                      const carritoCantidad = {// defino carritoCantidad con el valor de cantidad modificado
+                        cantidad: carritoIndividual.cantidad
+                      };
+                      console.log(carritoCantidad);
+        
+                      axios.put(`/api/carrito/${id}`, carritoCantidad)//hago el put con la cantidad modificada
+                        .then(responseCarrito => {
+                          console.log(responseCarrito.data);
+                          window.location.reload(true)
+                        })
+                        .catch(err => console.log(err));
+                    } else {
+                      console.log("El producto ya está en el carrito.");
+                    }
+                  })
+                  .catch(err => {
+                    console.log(err);
+                  });
+              } else { // si el nombre no es el mismo hace un post 
+                axios.get(`/api/productos/${id}`)
+                  .then(res => {
+                    var producto = {// defino la variable producto y ingreso los datos del producto
+                      _id: res.data._id,
+                      nombre: res.data.nombre,
+                      categoria: res.data.categoria,
+                      precio: res.data.precio,
+                      img: res.data.img,
+                      cantidad: inputValor || 1
+                    };
+                    axios.post('/api/carrito', producto)// hago un post con producto donde esta almacenado el producto que quiero agregar
+                      .then(res => {
+                        console.log(res.data);
+                        window.location.reload(true)
+                      })
+                      .catch(err => {
+                        console.log(err);
+                      });
+                  })
+                  .catch(err => {
+                    console.log(err);
+                  });
+              }
             })
             .catch(err => {
-                console.log(err)
-            })
-    }
+              console.log(err);
+            });
+      }
+
+    function handleInputChange(e, id) {
+        const { value } = e.target;
+        setInput(prevState => ({
+          ...prevState,
+          [id]: value
+        }));
+      }
 
     return(
         <div className="container">
@@ -92,8 +144,8 @@ function Juguetes(){
                                 <button className='btn btn-success'>Detalles</button>
                             </Link>
                             <div className="botonesProductos">
-                            <input id={juguete._id} type="number" className="inputCantidad float-start" value={input || 1} min={1} max={20}
-                                    onChange={e => setInput(e.target.value)}></input>
+                            <input id={juguete._id} type="number" className="inputCantidad float-start" value={input[juguete._id] || 1} min={1} max={20}
+                                    onChange={(e) => handleInputChange(e, juguete._id)}></input>
                                     
                                     <Link to={'/carrito'}>
                                     <button className="btn btn-primary float-end" onClick={() => agregarProducto(juguete._id)}>Agregar</button>

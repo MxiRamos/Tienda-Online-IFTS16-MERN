@@ -17,12 +17,13 @@ import Contacto from './components/Contacto';
 import Nosotros from './components/Nosotros';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import InfoUsuario from './components/InfoUsuario';
 
 function App() {
 
   const [productos, setProductos] = useState([])
   const [busqueda, setBusqueda] = useState('')
-
+  const [usuarioIndividual, setUsuarioIndividual] = useState([])
   
 
   useEffect(()=> {
@@ -46,6 +47,24 @@ function App() {
     console.log('Buscar ', buscador)
   }
 
+  const usuario = localStorage.getItem('username')
+
+  useEffect(() => {
+    axios.get('/api/usuarios')
+    .then(res => {
+      const usuarios = res.data
+      const usuarioNuevo = usuarios.filter(usuarioData => usuarioData.usuario === usuario)
+      
+      axios.get(`/api/usuarios/${usuarioNuevo[0]._id}`)
+        .then(response => {
+          setUsuarioIndividual(response.data)
+        })
+        .catch(error => {console.log(error)})
+    })
+    .catch(err => console.log(err))
+  }, [])
+  
+
   return (
     <div className="App">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -65,7 +84,7 @@ function App() {
               <div className='search-container'>
                 <div className='search-inner'>
                   <input type='text' placeholder='Buscar' value={busqueda} onChange={handleChange}></input>
-                  <button onClick={() => onSearch(busqueda)}>Buscar</button>
+                  <button onClick={() => onSearch(busqueda)} className='btn btn-light'>Buscar</button>
                 </div>
                 <div className='dropdown'>
                   {productos.filter(producto => { // filtra la lista de productos que se obtuvo con el axios.get
@@ -89,6 +108,13 @@ function App() {
               
               
             </ul>
+            {usuario && ( // si el valor de usuario es nulo o indefinido no se va mostrar en la navbar
+              <li className="nav">
+                <a className='nav-link' href={`/cuenta/${usuarioIndividual._id}`}>
+                  {usuario/* nombre del usuario */}
+                </a>
+              </li>
+            )}
             <li className="nav">
                 <a className="nav-link" href="/login">Login</a>
             </li>
@@ -117,6 +143,7 @@ function App() {
           <Route path='/carrito' element={<Carrito></Carrito>}></Route>
           <Route path='/contacto' element={<Contacto></Contacto>}></Route>
           <Route path='/nosotros' element={<Nosotros></Nosotros>}></Route>
+          <Route path='/cuenta/:id' element={<InfoUsuario></InfoUsuario>}></Route>
         </Routes>
         
       </BrowserRouter>

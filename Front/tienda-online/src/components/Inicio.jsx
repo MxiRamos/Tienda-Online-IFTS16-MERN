@@ -13,7 +13,7 @@ function Inicio(){
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).webp" className="d-block mx-auto img2" alt="..."></img>
+                <img src="https://www.solbyte.com/blog/wp-content/uploads/tienda-online-1.jpg" className="d-block mx-auto img2"  alt="..."></img>
             </div>
             <div class="carousel-item">
                 <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).webp" className="d-block mx-auto img2" alt="..."></img>

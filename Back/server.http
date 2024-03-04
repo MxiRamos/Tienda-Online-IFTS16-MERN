@@ -51,8 +51,8 @@ POST http://localhost:5000/api/usuarios HTTP/1.1
 Content-Type: application/json
 
 {
-    "usuario": "garrus244",
-    "email": "garrus23z@email.com",
+    "usuario": "dota2",
+    "email": "dota23@email.com",
     "password": "contraseña1234"
 }
 
@@ -62,8 +62,8 @@ POST http://localhost:5000/api/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "garrus2@email.com",
-    "password": "contraseña123"
+    "email": "dota23@email.com",
+    "password": "contraseña1234"
 }
 
 

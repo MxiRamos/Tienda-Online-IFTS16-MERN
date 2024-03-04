@@ -9,7 +9,7 @@ function Registrar(){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    function nuevoUsuario(e){
+    function nuevoUsuario(){
         
         var usuarioNuevo = {//asigno los valores de los input a usuarioNuevo
             usuario: usuario,
@@ -19,14 +19,19 @@ function Registrar(){
         console.log(usuarioNuevo)
 
         //axios
-        axios.post('/api/usuarios', usuarioNuevo) //hace el post de backend para la base de datos
+        if(usuario === '' || email === '' || password === ''){
+            alert("Debe llenar todos los inputs")
+        }else{
+            axios.post('/api/usuarios', usuarioNuevo) //hace el post de backend para la base de datos
             .then(res => {
                 console.log(res.data)
-                alert(res.data)
+                alert("Usuario registrado correctamente")
             })
             .catch(error => {
                 console.log(error)
             })
+        }
+        
     }
 
     return(
